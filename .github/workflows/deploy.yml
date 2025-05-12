@@ -36,4 +36,5 @@ jobs:
             export BOT_TOKEN=${{ secrets.BOT_TOKEN }}
             pip install -r requirements.txt
             pkill -f main.py || true
-            nohup python app/main.py > log.txt 2>&1 &
+            nohup venv/bin/python app/main.py > log.txt 2>&1 &
+            disown
