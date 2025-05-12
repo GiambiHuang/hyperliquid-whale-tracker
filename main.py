@@ -33,15 +33,19 @@ async def connect():
                                 asset_index = order["a"]
                                 price = order["p"]
                                 size = order["s"]
-                                name = data[asset_index].get("name", "")
-                                volume = float(size) * float(price)
-                                if (volume >= 1_000_000):
-                                    message = f"🟩 多 🐳 - {name} 價值${volume}"
-                                    if order["b"] == False:
-                                        message = f"🟥 空 🐳 - {name} 價值${volume}"
 
-                                    url = f'https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={message}'
-                                    requests.get(url)
+                                if asset_index < len(data):
+                                    name = data[asset_index].get("name", "")
+                                    volume = float(size) * float(price)
+                                    if (volume >= 1_000_000):
+                                        message = f"🟩 多 🐳 - {name} 價值${volume}"
+                                        if order["b"] == False:
+                                            message = f"🟥 空 🐳 - {name} 價值${volume}"
+
+                                        url = f'https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={message}'
+                                        requests.get(url)
+                                else:
+                                    print(f"Index {asset_index} is out of range.")
 
             except websockets.ConnectionClosed:
                 print("Connection closed.")
