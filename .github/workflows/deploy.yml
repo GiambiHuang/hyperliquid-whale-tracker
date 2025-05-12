@@ -36,6 +36,6 @@ jobs:
             pm2 delete python-app || true
             CHAT_ID=${{ secrets.CHAT_ID }} \
             BOT_TOKEN=${{ secrets.BOT_TOKEN }} \
-            pm2 start venv/bin/python --name python-app -- app/main.py
+            pm2 start venv/bin/python --name python-app -- python-app/main.py
 
             pm2 save
