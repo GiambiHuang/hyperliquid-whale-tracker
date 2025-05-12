@@ -33,7 +33,7 @@ async def connect():
                                 asset_index = int(order["a"])
                                 price = order["p"]
                                 size = order["s"]
-
+                                print(f"{asset_index} - {price} - {size}")
                                 if asset_index < len(data):
                                     name = data[asset_index].get("name", "")
                                     volume = float(size) * float(price)
@@ -51,4 +51,8 @@ async def connect():
                 print("Connection closed.")
                 break
 
-asyncio.run(connect())
+
+try:
+    asyncio.run(connect())
+except KeyboardInterrupt:
+    print("程序被中斷")
