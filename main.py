@@ -30,7 +30,7 @@ async def connect():
                         if action_type == "order":
                             tx_hash = tx.get("hash", "")
                             for order in tx["action"]["orders"]:
-                                asset_index = order["a"]
+                                asset_index = int(order["a"])
                                 price = order["p"]
                                 size = order["s"]
 
