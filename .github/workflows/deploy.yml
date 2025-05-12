@@ -32,6 +32,8 @@ jobs:
             cd ~/python-app
             python3 -m venv venv
             source venv/bin/activate
+            export CHAT_ID=${{ secrets.CHAT_ID }}
+            export BOT_TOKEN=${{ secrets.BOT_TOKEN }}
             pip install -r requirements.txt
             pkill -f main.py || true
             nohup python app/main.py > log.txt 2>&1 &
