@@ -33,11 +33,11 @@ async def connect():
                                 asset_index = int(order["a"])
                                 price = order["p"]
                                 size = order["s"]
-                                print(f"{asset_index} - {price} - {size}")
                                 if asset_index < len(data):
                                     name = data[asset_index].get("name", "")
                                     volume = float(size) * float(price)
-                                    if (volume >= 1_000_000):
+                                    print(f"{asset_index} - {price} - {size} - {volume}")
+                                    if (volume >= 100_000):
                                         message = f"🟩 多 🐳 - {name} 價值${volume}"
                                         if order["b"] == False:
                                             message = f"🟥 空 🐳 - {name} 價值${volume}"
@@ -53,6 +53,7 @@ async def connect():
 
 
 try:
+    print("Starting...")
     asyncio.run(connect())
 except KeyboardInterrupt:
     print("程序被中斷")

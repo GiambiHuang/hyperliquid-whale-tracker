@@ -34,8 +34,9 @@ jobs:
             source venv/bin/activate
             pip install -r requirements.txt
             pm2 delete python-app || true
-            CHAT_ID=${{ secrets.CHAT_ID }} \
-            BOT_TOKEN=${{ secrets.BOT_TOKEN }} \
-            pm2 start venv/bin/python --name python-app -- main.py
 
+            echo "CHAT_ID=${CHAT_ID}" > .env
+            echo "BOT_TOKEN=${BOT_TOKEN}" >> .env
+
+            pm2 start venv/bin/python --name python-app -- main.py
             pm2 save
