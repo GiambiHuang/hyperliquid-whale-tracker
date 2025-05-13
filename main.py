@@ -37,7 +37,7 @@ async def connect():
                                     name = tokens[asset_index].get("name", "")
                                     volume = float(size) * float(price)
                                     print(f"{asset_index} - {price} - {size} - {volume}")
-                                    if (volume >= 100_000):
+                                    if (volume >= 10_000):
                                         message = f"🟩 多 🐳 - {name} 價值${volume}"
                                         if order["b"] == False:
                                             message = f"🟥 空 🐳 - {name} 價值${volume}"
