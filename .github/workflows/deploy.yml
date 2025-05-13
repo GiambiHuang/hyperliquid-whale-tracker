@@ -40,3 +40,4 @@ jobs:
 
             pm2 start venv/bin/python --name python-app -- main.py
             pm2 save
+            exit 0

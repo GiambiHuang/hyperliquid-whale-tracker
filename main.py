@@ -56,4 +56,4 @@ try:
     print("Starting...")
     asyncio.run(connect())
 except KeyboardInterrupt:
-    print("程序被中斷")
+    print("程序被中斷..")
