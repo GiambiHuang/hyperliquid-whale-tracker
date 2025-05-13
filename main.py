@@ -12,13 +12,12 @@ chat_id = os.getenv("CHAT_ID")
 
 async def connect():
     uri = "wss://rpc.hyperliquid.xyz/ws"
-    data = []
+    tokens = []
 
     # 載入 JSON 檔案
     with open('tokens.json', 'r') as f:
-        data = json.load(f)
+        tokens = json.load(f)
 
-    print(len(data))
     async with websockets.connect(uri) as websocket:
         await websocket.send('{"method": "subscribe", "subscription": {"type": "explorerTxs"}}')
         while True:
@@ -34,8 +33,8 @@ async def connect():
                                 asset_index = int(order["a"])
                                 price = order["p"]
                                 size = order["s"]
-                                if asset_index < len(data):
-                                    name = data[asset_index].get("name", "")
+                                if asset_index < len(tokens):
+                                    name = tokens[asset_index].get("name", "")
                                     volume = float(size) * float(price)
                                     print(f"{asset_index} - {price} - {size} - {volume}")
                                     if (volume >= 100_000):
