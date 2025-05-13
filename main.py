@@ -18,6 +18,7 @@ async def connect():
     with open('tokens.json', 'r') as f:
         data = json.load(f)
 
+    print(len(data))
     async with websockets.connect(uri) as websocket:
         await websocket.send('{"method": "subscribe", "subscription": {"type": "explorerTxs"}}')
         while True:
