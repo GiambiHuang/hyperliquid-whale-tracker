@@ -38,6 +38,6 @@ jobs:
             echo "CHAT_ID=${{ secrets.CHAT_ID }}" > .env
             echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> .env
 
-            pm2 start venv/bin/python --name python-app -- main.py
+            pm2 start venv/bin/python --name python-app -- -u main.py
             pm2 save
             exit 0
